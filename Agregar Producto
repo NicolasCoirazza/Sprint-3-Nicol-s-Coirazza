@@ -29,7 +29,7 @@ class Bertoldiagregar:
         self.driver.find_element(By.XPATH,'//*[@id="AddToCartForm-template--16134502580456__main-6863296168104"]/div[3]/button/span').click()
         time.sleep(10)
         #Hace un screenshot de la página
-        self.screenshot = self.driver.get_screenshot_as_file("C:\\Users\\usuario\\python projects\\AgregarVariosProductos.png")
+        self.screenshot = self.driver.get_screenshot_as_file("C:\\Users\\usuario\\python projects\\AgregarProducto.png")
         time.sleep(30)
         
     def close_browser(self):
