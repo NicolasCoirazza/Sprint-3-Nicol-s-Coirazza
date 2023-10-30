@@ -1,0 +1,43 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+
+class Bertoldiagregar:
+    def _init_(self):
+        # Inicializar el navegador web (en este caso, Chrome)
+        self.driver = webdriver.Chrome()
+    
+    def accept_cookies(self):
+        # Abrir la página home de Bertoldi
+        self.driver.get("https://bertoldi.com.ar/")
+        
+    
+
+    def agregar_carrito(self):
+        #Ingresamos a la pagina del home de Bertoldi
+        self.driver.get("https://bertoldi.com.ar/")
+        #seleccionar submenu Barbería
+        self.driver.find_element(By.XPATH,'//*[@id="SiteHeader"]/div[2]/div/ul/li[2]/a').click()
+        time.sleep(30)
+        #Seleccionar producto al carrito
+        self.driver.find_element(By.XPATH,'/html/body/div[1]/div/main/div[2]/div/div/div/div/div[2]/div[1]/div/div[2]/div[1]/div/a/div[1]/div[2]/img').click()
+        time.sleep(10)
+        #aceptar publicidad
+        self.driver.find_element(By.XPATH, "/html/body/div[10]/dialog/div/div[2]/div/button[1]").click()
+        time.sleep(10)
+        #Seleccionar producto al carrito
+        self.driver.find_element(By.XPATH,'//*[@id="AddToCartForm-template--16134502580456__main-6863296168104"]/div[3]/button/span').click()
+        time.sleep(10)
+        #Hace un screenshot de la página
+        self.screenshot = self.driver.get_screenshot_as_file("C:\\Users\\juank\\Python Framework\\Automation Proyect\\Práctica Automation\\src\\data\\evidencia\\AgregarVariosProductos.png")
+        time.sleep(30)
+        
+    def close_browser(self):
+        # Cerrar el navegador
+        self.driver.quit()
+
+if _name_ == "_main_":
+    automation = Bertoldiagregar()
+    automation.accept_cookies()
+    automation.agregar_carrito()
+    automation.close_browser()
