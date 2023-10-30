@@ -16,6 +16,7 @@ class Bertoldiagregar:
     def agregar_carrito(self):
         #Ingresamos a la pagina del home de Bertoldi
         self.driver.get("https://bertoldi.com.ar/")
+        self.driver.maximize_window()
         #seleccionar submenu Barbería
         self.driver.find_element(By.XPATH,'//*[@id="SiteHeader"]/div[2]/div/ul/li[2]/a').click()
         time.sleep(30)
