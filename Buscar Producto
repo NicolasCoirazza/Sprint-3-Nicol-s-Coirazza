@@ -24,7 +24,7 @@ class BertoldiBuscar:
         self.driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[1]/div[3]/form[1]/button[1]").click()
         self.driver.implicitly_wait (100)
         #Hace un screenshot de la página
-        self.screenshot = self.driver.get_screenshot_as_file("C:\\Users\\juank\\Python Framework\\Automation Proyect\\Práctica Automation\\src\data\\evidencia\\buscarproducto.png")
+        self.screenshot = self.driver.get_screenshot_as_file("C:\\Users\\usuario\\python projects\\buscarproducto.png")
         time.sleep(30)
     def close_browser(self):
         # Cerrar el navegador
