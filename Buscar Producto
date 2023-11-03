@@ -4,31 +4,33 @@ import time
 
 class BertoldiBuscar:
     def __init__(self):
+        # Inicializar el navegador web (en este caso, Chrome)
         self.driver = webdriver.Chrome()
-
-    def accept_cookies(self):
-        # Abrir la página home de Bertoldi
+        #self.driver.maximize_window()
+    def realizar_busqueda(self):
+        #Ingresamos a la pagina de Bertoldi
         self.driver.get("https://bertoldi.com.ar/")
-
-    def realizar_busqueda(self, producto):
-        self.driver.get("https://bertoldi.com.ar/")
-        self.driver.maximize_window()
-        #Buscar el producto en la barra de búsqueda
-        search_bar = self.driver.find_element(By.XPATH, '//*[@id="SearchInput"]')
-        search_bar.send_keys(producto)
-        search_bar.submit()
-        time.sleep(5)  # Esperar a que cargue la página
-        #Hacer clic en el primer resultado de la búsqueda
-        first_result = self.driver.find_element(By.XPATH, '//*[@id="hits"]/div[1]/a')
-        first_result.click()
-        time.sleep(5)  # Esperar a que cargue la página del producto
-        #Tomar un screenshot de la página del producto
-        self.driver.get_screenshot_as_file("C:\\Users\\usuario\\python projects\\ProductoEncontrado.png")
-
+        #Seleccionar el buscador
+        self.driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[1]/div[3]/form[1]/input[3]").click()
+        self.driver.implicitly_wait (100)
+        time.sleep(10)
+        #aceptar publicidad
+        self.driver.find_element(By.XPATH, "/html/body/div[10]/dialog/div/div[2]/div/button[1]").click()
+        self.driver.implicitly_wait (100)
+        #Ingresar producto a agregar
+        self.driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[1]/div[3]/form[1]/input[3]").send_keys("Shampoo Absolut Repair")
+        self.driver.implicitly_wait (100)
+        #Buscar
+        self.driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[1]/div[3]/form[1]/button[1]").click()
+        self.driver.implicitly_wait (100)
+        #Hace un screenshot de la página
+        self.screenshot = self.driver.get_screenshot_as_file("C:\\Users\\juank\\Python Framework\\Automation Proyect\\Práctica Automation\\src\data\\evidencia\\buscarproducto.png")
+        time.sleep(30)
     def close_browser(self):
+        # Cerrar el navegador
         self.driver.quit()
 
-automation = BertoldiBuscar()  #Crear una instancia de BertoldiBuscar
-automation.accept_cookies()
-automation.realizar_busqueda("nombre del producto a buscar")  # Reemplazar con el nombre real del producto
-automation.close_browser()
+if __name__ == "__main__":
+    automation = BertoldiBuscar()
+    automation.realizar_busqueda()
+    automation.close_browser()
